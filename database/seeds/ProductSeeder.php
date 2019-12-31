@@ -12,7 +12,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
+        Product::firstOrNew([
         	'name' => 'case a30',
         	'price' => 10000,
         	'detail' => 'Case samsung a30 custom',
