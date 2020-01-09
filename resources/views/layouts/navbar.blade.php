@@ -10,13 +10,6 @@
       <img alt="image" src="{{ asset(auth()->user()->avatar) }}" class="rounded-circle mr-1">
       <div class="d-sm-none d-lg-inline-block">{{ __('Hi') }}, {{ auth()->user()->name }}</div></a>
       <div class="dropdown-menu dropdown-menu-right">
-        <a href="#" class="dropdown-item has-icon">
-          <i class="far fa-user"></i> {{ __('Profile') }}
-        </a>
-        <a href="#" class="dropdown-item has-icon">
-          <i class="fas fa-cog"></i> {{ __('Setting') }}
-        </a>
-        <div class="dropdown-divider"></div>
         <a class="dropdown-item has-icon text-danger" href="{{ route('logout') }}"
           onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">

@@ -11,10 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UserController@index');
+Route::get('/product/{product}', 'UserController@product');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/list', 'UserController@list')->name('user.account.list');
+Route::resource('user', 'UserController');
+Route::resource('account', 'AccountController');
+Route::resource('product', 'ProductController');
+Route::resource('category', 'CategoryController');
