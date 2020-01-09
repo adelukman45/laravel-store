@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Illuminate\Http\Request;
+use App\Category;
+use DataTables;
 
 class CategoryController extends Controller
 {
@@ -20,13 +21,12 @@ class CategoryController extends Controller
     {
         $view = [
             'title' => __('Category'),
-            'category' => Category::paginate(12),
             'breadcrumbs' => [
-                route('product.index') => __('Product'),
+                route('category.index') => __('Category'),
                 null => __('Data')
             ],
         ];
-        return view('category/category', $view);
+        return view('category.category', $view);
     }
 
     public function list(Request $request)
@@ -55,7 +55,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $view = [
+            'title' => __('Create Category'),
+            'breadcrumbs' => [
+                route('category.index') => __('Category'),
+                null => __('Create')
+            ],
+        ];
+        return view('category.create', $view);
     }
 
     /**
@@ -66,8 +73,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+        return redirect()->route('category.index');
     }
+    
 
     /**
      * Display the specified resource.

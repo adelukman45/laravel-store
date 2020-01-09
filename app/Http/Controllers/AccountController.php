@@ -54,7 +54,14 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        $view = [
+            'title' => __('Create Account'),
+            'breadcrumbs' => [
+                route('user.index') => __('Account'),
+                null => __('Create')
+            ],
+        ];
+        return view('account.create', $view);
     }
 
     /**
@@ -65,7 +72,8 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect()->route('account.index');
     }
 
     /**

@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'UserController@index');
-Route::get('/product/{product}', 'UserController@product');
 
 Auth::routes();
 

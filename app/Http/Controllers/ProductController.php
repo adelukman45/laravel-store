@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use Datatable;
+use DataTables;
 
 class ProductController extends Controller
 {
@@ -21,19 +21,18 @@ class ProductController extends Controller
     {
         $view = [
             'title' => __('Product'),
-            'products' => Product::paginate(12),
             'breadcrumbs' => [
                 route('product.index') => __('Product'),
                 null => __('Data')
             ],
         ];
-        return view('product/product', $view);
+        return view('product.product', $view);
     }
 
     public function list(Request $request)
     {
         if ($request->ajax());{
-            $account = User::get();
+            $account = Product::get();
             return DataTables::of($account)
             ->addColumn('DT_RowIndex', function ($data) {
                 return '<div class="checkbox icheck"><label><input type="checkbox" name="selectedData[]" value="'.$data->id.'"></label></div>';
@@ -56,7 +55,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $view = [
+            'title' => __('Create Product'),
+            'breadcrumbs' => [
+                route('product.index') => __('Product'),
+                null => __('Create')
+            ],
+        ];
+        return view('product.create', $view);
     }
 
     /**
@@ -67,7 +73,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Product::create($request->all());
+        return redirect()->route('product.index');
     }
 
     /**
